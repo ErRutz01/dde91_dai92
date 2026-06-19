@@ -1,0 +1,26 @@
+﻿OrderID;CustomerID;CustomerName;CustomerAddress;BookID;BookTitle;Author;AuthorBio;OrderDate;Quantity;Price;ReturnDate;ISBN
+1;1005;Alice Smith;123 Maple St, Springfield, 12345;2003;Data Engineering;John Doe;Renowned Author;01.01.2023;2;78.00;01.02.2023;978-3-16-148410-0
+1;1012;Irene Black;606 Pine St, Springfield, 12345;2007;R Programming;Robert Gentleman;Statistician;01.01.2023;1;45.50;01.02.2023;978-1-89-138922-1
+2;1008;Bob Johnson;456 Oak St, Springfield, 12345;2001;Introduction to Databases;Jane Smith;DB Expert;02.01.2023;1;67.24;02.02.2023;978-0-12-345678-9
+2;1014;Dave Green;444 Maple St, Springfield, 12345;2013;Big Data Analysis;Grace Hopper;Pioneer;02.01.2023;3;59.00;02.02.2023;978-3-45-678910-1
+3;1003;Carol White;789 Pine St, Springfield, 12345;2006;Advanced SQL;Alan Turing;Mathematician;03.01.2023;3;85.73;03.02.2023;978-1-234-56789-7
+4;1001;Dave Brown;101 Maple St, Springfield, 12345;2002;Database Security;Ada Lovelace;Computing;04.01.2023;2;46.48;04.02.2023;978-0-98-765432-1
+5;1007;Eve Black;202 Oak St, Springfield, 12345;2004;Big Data Analysis;Grace Hopper;Pioneer;05.01.2023;4;92.00;05.02.2023;978-3-45-678910-1
+5;1013;Henry Smith;888 Oak St, Springfield, 12345;2004;NoSQL Databases;Eric Brewer;NoSQL Expert;05.01.2023;3;73.20;05.02.2023;978-1-18-817368-3
+6;1002;Frank Green;303 Pine St, Springfield, 12345;2008;Cloud Computing;Tim Berners-Lee;Web Pioneer;06.01.2023;1;53.20;06.02.2023;978-0-14-311964-9
+6;1005;Alice Smith;123 Maple St, Springfield, 12345;2003;Data Engineering;John Doe;Renowned Author;06.01.2023;2;78.00;06.02.2023;978-3-16-148410-0
+7;1010;Grace White;404 Maple St, Springfield, 12345;2009;Machine Learning;Andrew Ng;AI Researcher;07.01.2023;2;77.30;07.02.2023;978-1-50-117321-9
+8;1009;Henry Brown;505 Oak St, Springfield, 12345;2010;Data Visualization;Hadley Wickham;R Developer;08.01.2023;3;65.00;08.02.2023;978-0-07-180855-2
+9;1015;Karen Smith;808 Oak St, Springfield, 12345;2011;Python for Data Science;Guido van Rossum;Python Creator;09.01.2023;2;54.60;09.02.2023;978-0-14-303858-0
+9;1012;Irene Black;606 Pine St, Springfield, 12345;2005;Data Warehousing;Ralph Kimball;Data Warehousing;09.01.2023;1;49.99;09.02.2023;978-1-61-729453-2
+10;1004;Jack Green;707 Maple St, Springfield, 12345;2012;NoSQL Databases;Eric Brewer;NoSQL Expert;10.01.2023;4;88.50;10.02.2023;978-1-18-817368-3
+11;1006;Larry Johnson;909 Pine St, Springfield, 12345;2007;R Programming;Robert Gentleman;Statistician;11.01.2023;3;66.70;11.02.2023;978-1-89-138922-1
+12;1006;Larry Johnson;909 Pine St, Springfield, 12345;2007;R Programming;Robert Gentleman;Statistician;12.01.2023;3;66.70;12.02.2023;978-1-89-138922-1
+13;1011;Alice White;111 Maple St, Springfield, 12345;2003;Machine Learning;Andrew Ng;AI Researcher;13.01.2023;2;68.40;13.02.2023;978-0-07-180855-2
+14;1003;Bob Brown;222 Oak St, Springfield, 12345;2014;Introduction to Databases;Jane Smith;DB Expert;14.01.2023;1;72.30;14.02.2023;978-0-12-345678-9
+15;1008;Carol Black;333 Pine St, Springfield, 12345;2015;Data Engineering;John Doe;Renowned Author;15.01.2023;4;81.20;15.02.2023;978-3-16-148410-0
+16;1014;Dave Green;444 Maple St, Springfield, 12345;2013;Big Data Analysis;Grace Hopper;Pioneer;16.01.2023;3;59.00;16.02.2023;978-3-45-678910-1
+17;1007;Frank Black;666 Pine St, Springfield, 12345;2002;Data Visualization;Hadley Wickham;R Developer;18.01.2023;1;45.50;18.02.2023;978-0-07-180855-2
+18;1010;Grace Brown;777 Maple St, Springfield, 12345;2006;Data Warehousing;Ralph Kimball;Data Warehousing;19.01.2023;4;86.30;19.02.2023;978-1-61-729453-2
+19;1013;Henry Smith;888 Oak St, Springfield, 12345;2004;NoSQL Databases;Eric Brewer;NoSQL Expert;20.01.2023;3;73.20;20.02.2023;978-1-18-817368-3
+20;1005;Eve Johnson;555 Oak St, Springfield, 12345;2001;Cloud Computing;Tim Berners-Lee;Web Pioneer;17.01.2023;2;91.40;17.02.2023;978-0-14-311964-9
