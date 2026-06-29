@@ -1,11 +1,17 @@
 services:
-  web:
-    build: .
-    ports:
-      - "${APP_PORT}:5000"
+  postgres:
+    image: postgres:18
     environment:
-      - REDIS_HOST=${REDIS_HOST}
-      - REDIS_PORT=${REDIS_PORT}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: sales_order_item
 
-  redis:
-    image: redis:alpine
+  pgadmin:
+    image: dpage/pgadmin4:9.8
+    ports:
+      - 8080:80
+    environment:
+      # Required by pgAdmin
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL}
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD}
+      PGADMIN_CONFIG_WTF_CSRF_ENABLED: 'False'
