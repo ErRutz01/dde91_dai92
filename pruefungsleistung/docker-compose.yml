@@ -1,10 +1,16 @@
 services:
   postgres:
     image: postgres:18
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./data:/var/lib/postgresql
     environment:
       POSTGRES_USER: ${POSTGRES_USER}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
-      POSTGRES_DB: sales_order_item
+      POSTGRES_DB: sales_order_itemdocke
+    
+    
 
   pgadmin:
     image: dpage/pgadmin4:9.8
@@ -15,3 +21,6 @@ services:
       PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL}
       PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD}
       PGADMIN_CONFIG_WTF_CSRF_ENABLED: 'False'
+
+volumes:
+  postgresql-data:
