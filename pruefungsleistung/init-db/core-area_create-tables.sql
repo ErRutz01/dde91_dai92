@@ -1,16 +1,16 @@
 
-CREATE TABLE core.category(
+CREATE TABLE IF NOT EXISTS core.category(
 	sub_category TEXT NOT NULL PRIMARY KEY,
 	category TEXT
 );
 
-CREATE TABLE core.product(
+CREATE TABLE IF NOT EXISTS core.product(
 	product_id TEXT NOT NULL PRIMARY KEY,
 	sub_category TEXT NOT NULL REFERENCES core.category(sub_category),
 	product_name TEXT
 );
 
-CREATE TABLE core.location(
+CREATE TABLE IF NOT EXISTS core.location(
 	postal_code TEXT NOT NULL PRIMARY KEY,
 	city TEXT,
 	"state" TEXT,
@@ -18,12 +18,12 @@ CREATE TABLE core.location(
 	region TEXT
 );
 
-CREATE TABLE core.customer(
+CREATE TABLE IF NOT EXISTS core.customer(
 	customer_id TEXT NOT NULL PRIMARY KEY,
 	customer_name TEXT,
 	segment TEXT
 );
-CREATE TABLE core.orders(
+CREATE TABLE IF NOT EXISTS core.orders(
 	order_id TEXT NOT NULL PRIMARY KEY,
 	customer_id TEXT NOT NULL REFERENCES core.customer(customer_id),
 	postal_code TEXT NOT NULL REFERENCES core.location(postal_code),
@@ -32,7 +32,7 @@ CREATE TABLE core.orders(
 	ship_mode TEXT
 );
 
-CREATE TABLE core.bruecken_tabelle (
+CREATE TABLE IF NOT EXISTS core.bruecken_tabelle (
 	order_id TEXT NOT NULL REFERENCES core.orders(order_id),
 	product_id TEXT NOT NULL REFERENCES core.product(product_id),
 	Sales NUMERIC(10, 2),

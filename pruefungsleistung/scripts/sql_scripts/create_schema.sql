@@ -1,3 +1,0 @@
-CREATE SCHEMA staging;
-CREATE SCHEMA core;
-CREATE SCHEMA mart;
