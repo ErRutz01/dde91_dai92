@@ -1,0 +1,41 @@
+-- Staging vs Core vs Mart: SUM(sales)
+
+SELECT SUM(sales)
+From staging.sales_order_item
+
+SELECT SUM(sales)
+From core.bruecken_tabelle
+
+SELECT SUM(sales)
+From mart.main_table
+
+
+-- DATA MART Validierung
+SELECT sub_category,
+ROUND(SUM(sales)::numeric, 2) as sum_sales,
+ROUND(AVG(avrg_purchase_value)::numeric, 2) as avg_purchase_value,
+ROUND(AVG(purchase_frequency)::numeric, 2) as avg_purchase_frequency,
+ROUND(AVG (clv)::numeric, 2) as avg_clv
+
+FROM mart.main_table
+	
+	LEFT JOIN mart.customer_dim
+	ON mart.main_table.customer_id = mart.customer_dim.customer_id
+
+	LEFT JOIN mart.product_dim
+	ON mart.main_table.product_id = mart.product_dim.product_id
+
+	LEFT JOIN mart.shipping_dim
+	ON mart.main_table.order_id = mart.shipping_dim.order_id
+
+	LEFT JOIN mart.location_dim
+	ON mart.main_table.postal_code = mart.location_dim.postal_code
+
+WHERE
+      mart.shipping_dim.order_date >= '2015-01-01'
+  AND mart.shipping_dim.order_date <  '2015-12-31'
+  AND mart.location_dim.state = 'California'
+
+GROUP BY sub_category
+
+ORDER BY avg_clv DESC;

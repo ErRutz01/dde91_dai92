@@ -10,7 +10,7 @@ Installation und Ausführung:
 1. Docker installieren
 2. Docker-Container starten:
    docker compose up -d
-3. Datenbank im Container erstellen:
+3. (Manuell Datenbank im Container erstellen):
    docker exec -it pruefungsleistung-postgres-1 createdb -U EricRutz12 sales_order_item
 4. Python-Abhängigkeiten installieren:
    pip install -r requirements.txt
@@ -26,7 +26,19 @@ Repository-Struktur:
 - data/: Dateispeicher für verarbeitete Daten
 - init-db/: SQL Skripte für Schemata und Tabellenerstellung
 - scripts/lib_py/: Python-ETL-Skripte (load_staging.py, normalisierung.py, load_data_mart.py)
+- doc/: Visuelle Abbildungen der Prozessen und Architektur
+** - > doc/: SQL-Validierungsskripte (sql_validierung.txt)**
 
 Schnittstellen und Zugangsdaten:
 - PostgreSQL: 127.0.0.1:5432 (Benutzer: EricRutz12, Datenbank: sales_order_item)
 - pgAdmin Web-Interface: http://localhost:8080 (E-Mail: ericrutz780@outlook.de, Passwort: 4hFd98Tm!120101)
+
+pgAdmin Server einrichten:
+1. Web-Interface unter http://localhost:8080 öffnen und einloggen
+2. "Add New Server" auswählen
+3. Reiter "Connection" ausfüllen:
+   - Host name / address: postgres
+   - Port: 5432
+   - Maintenance database: sales_order_item
+   - Username: EricRutz12
+   - Password: 4hFd98Tm!120101
