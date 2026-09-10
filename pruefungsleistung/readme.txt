@@ -1,6 +1,9 @@
 Sales Order Data Warehouse
 
-ETL-Pipeline und Data Warehouse basierend auf PostgreSQL, Docker und Python. Das System setzt eine Medallion-Architektur um (Staging, Core 3NF, Data Mart Sternschema).
+ELT-Pipeline und Data Warehouse basierend auf PostgreSQL, Docker und Python. Das System setzt eine Medallion-Architektur um (Staging, Core 3NF, Data Mart Sternschema).
+
+Datenquelle:
+Die Pipeline verarbeitet den Superstore-Sales-Datensatz. Die Quelldatei liegt bereits im Repository unter raw_data/sales_order_item.csv.
 
 Voraussetzungen:
 - Docker und Docker Compose
@@ -8,30 +11,39 @@ Voraussetzungen:
 
 Installation und Ausführung:
 1. Docker installieren
-2. Docker-Container starten:
+2. .env-Datei anlegen (Werte aus .env.example übernehmen)
+3. Docker-Container starten:
    docker compose up -d
-3. (Manuell Datenbank im Container erstellen):
-   docker exec -it pruefungsleistung-postgres-1 createdb -U EricRutz12 sales_order_item
 4. Python-Abhängigkeiten installieren:
    pip install -r requirements.txt
-5. ETL-Pipeline ausführen:
+5. Pipeline ausführen:
    python main.py
+
+Umgebungsvariablen (.env):
+Folgende Schlüssel müssen in der .env definiert werden (siehe .env.example):
+- POSTGRES_USER
+- POSTGRES_PASSWORD
+- POSTGRES_DB
+- POSTGRES_HOST
+- POSTGRES_PORT
+- PGADMIN_DEFAULT_EMAIL
+- PGADMIN_DEFAULT_PASSWORD
 
 Repository-Struktur:
 - main.py: Orchestrierung der Pipeline
 - docker-compose.yml: Konfiguration PostgreSQL 18 & pgAdmin 4
 - .env: Umgebungsvariablen
-- requirements.txt: Python-Bibliotheken (pandas, SQLAlchemy, psycopg2-binary)
+- .env.example: Vorlage für Umgebungsvariablen
+- requirements.txt: Python-Bibliotheken (pandas, SQLAlchemy, psycopg2-binary, python-dotenv)
 - raw_data/: Dateispeicher für CSV-Rohdaten (sales_order_item.csv)
-- data/: Dateispeicher für verarbeitete Daten
 - init-db/: SQL Skripte für Schemata und Tabellenerstellung
-- scripts/lib_py/: Python-ETL-Skripte (load_staging.py, normalisierung.py, load_data_mart.py)
-- doc/: Visuelle Abbildungen der Prozessen und Architektur
-** - > doc/: SQL-Validierungsskripte (sql_validierung.txt)**
+- scripts/lib_py/: Python-Skripte (load_staging.py, normalisierung.py)
+- scripts/sql/: SQL-Transformationsskripte (truncate_core.sql, truncate_staging.sql, load_core-mart.sql, mart_kpi-update.sql)
+- doc/: Visuelle Abbildungen der Prozesse und Architektur sowie SQL-Validierungsskripte (sql_validierung.txt)
 
 Schnittstellen und Zugangsdaten:
-- PostgreSQL: 127.0.0.1:5432 (Benutzer: EricRutz12, Datenbank: sales_order_item)
-- pgAdmin Web-Interface: http://localhost:8080 (E-Mail: ericrutz780@outlook.de, Passwort: 4hFd98Tm!120101)
+- PostgreSQL: 127.0.0.1:5432 (Benutzer: Wert aus POSTGRES_USER in .env, Datenbank: Wert aus POSTGRES_DB in .env)
+- pgAdmin Web-Interface: http://localhost:8080 (E-Mail: Wert aus PGADMIN_DEFAULT_EMAIL in .env, Passwort: Wert aus PGADMIN_DEFAULT_PASSWORD in .env)
 
 pgAdmin Server einrichten:
 1. Web-Interface unter http://localhost:8080 öffnen und einloggen
@@ -39,6 +51,6 @@ pgAdmin Server einrichten:
 3. Reiter "Connection" ausfüllen:
    - Host name / address: postgres
    - Port: 5432
-   - Maintenance database: sales_order_item
-   - Username: EricRutz12
-   - Password: 4hFd98Tm!120101
+   - Maintenance database: Wert aus POSTGRES_DB in .env
+   - Username: Wert aus POSTGRES_USER in .env
+   - Password: Wert aus POSTGRES_PASSWORD in .env

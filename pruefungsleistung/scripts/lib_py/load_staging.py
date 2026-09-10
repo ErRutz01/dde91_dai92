@@ -7,13 +7,23 @@ import datetime
 from sqlalchemy import create_engine, text
 import psycopg2
 
+from dotenv import load_dotenv
 
-engine = create_engine('postgresql://EricRutz12:4hFd98Tm!120101@127.0.0.1:5432/sales_order_item')
+load_dotenv()
+
+POSTGRES_USER=os.getenv("POSTGRES_USER")
+POSTGRES_PASSWORD=os.getenv("POSTGRES_PASSWORD")
+POSTGRES_HOST = os.getenv("POSTGRES_HOST")
+POSTGRES_PORT = os.getenv("POSTGRES_PORT")
+POSTGRES_DB = os.getenv("POSTGRES_DB")
+
+engine = create_engine(f"postgresql://{POSTGRES_USER}:{POSTGRES_PASSWORD}@{POSTGRES_HOST}:{POSTGRES_PORT}/{POSTGRES_DB}")
 
 def load_data_to_staging(file) :
 
 ## Daten einlesen
-    df = pd.read_csv(file)
+    df = pd.read_csv(file, dtype={"Postal Code": str})
+
 
     ### Spaltennamen anpassen
     df = df.rename(
@@ -33,10 +43,12 @@ def load_data_to_staging(file) :
     )
 
     df.columns = df.columns.str.lower()
+    df = df.dropna(subset=["postal_code"])
 
     ### Datentypen anpassen
     df["order_date"] = pd.to_datetime(df["order_date"], format="%d/%m/%Y")
     df["ship_date"] = pd.to_datetime(df["ship_date"], format="%d/%m/%Y")
+
 
 
     ## finale Daten in die Staging-Tabelle schreiben
@@ -47,10 +59,6 @@ def load_data_to_staging(file) :
               index=False
               
      )
-
-    df = df.dropna(subset=["postal_code"])
-    df.to_csv("data/cleaned_sales_order_item.csv", index=False)
-
 if __name__ == "__main__":
     file_path = os.path.join("raw_data/sales_order_item.csv")
     load_data_to_staging(file_path)

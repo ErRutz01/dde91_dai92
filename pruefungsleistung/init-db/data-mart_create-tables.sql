@@ -37,6 +37,5 @@ CREATE TABLE IF NOT EXISTS mart.main_table (
 	sales NUMERIC(10, 2),
     postal_code TEXT NOT NULL REFERENCES mart.location_dim(postal_code),
     customer_id TEXT NOT NULL REFERENCES mart.customer_dim(customer_id),
-    country TEXT,
 	PRIMARY KEY (order_id, product_id)
 );

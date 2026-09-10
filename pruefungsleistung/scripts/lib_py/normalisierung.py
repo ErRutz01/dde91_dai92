@@ -1,13 +1,24 @@
-import os
 import pandas as pd
+import os
 from sqlalchemy import create_engine
 
+from dotenv import load_dotenv
 
-engine = create_engine("postgresql://EricRutz12:4hFd98Tm!120101@127.0.0.1:5432/sales_order_item")
+load_dotenv()
 
-def tabellen_normalisieren(file):
+POSTGRES_USER=os.getenv("POSTGRES_USER")
+POSTGRES_PASSWORD=os.getenv("POSTGRES_PASSWORD")
+POSTGRES_HOST = os.getenv("POSTGRES_HOST")
+POSTGRES_PORT = os.getenv("POSTGRES_PORT")
+POSTGRES_DB = os.getenv("POSTGRES_DB")
 
-    df = pd.read_csv(file)
+engine = create_engine(f"postgresql://{POSTGRES_USER}:{POSTGRES_PASSWORD}@{POSTGRES_HOST}:{POSTGRES_PORT}/{POSTGRES_DB}")
+
+query = "SELECT * FROM staging.sales_order_item"
+
+def tabellen_normalisieren(query):
+
+    df = pd.read_sql(query , con = engine)
 
     # Tabellen erstellen
 
@@ -65,5 +76,4 @@ def tabellen_normalisieren(file):
             )
 
 if __name__ == "__main__":
-    file_path = os.path.join("data/cleaned_sales_order_item.csv")
-    tabellen_normalisieren(file_path)
+    tabellen_normalisieren(query)

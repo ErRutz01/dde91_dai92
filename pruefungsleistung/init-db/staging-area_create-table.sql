@@ -1,0 +1,20 @@
+CREATE TABLE IF NOT EXISTS staging.sales_order_item(
+    row_id INT,
+    order_id TEXT,
+    product_id TEXT,
+    customer_id TEXT,
+    postal_code TEXT,
+    order_date DATE,
+    ship_date DATE,
+    ship_mode TEXT,
+    sub_category TEXT,
+    category TEXT,
+    product_name TEXT,
+    customer_name TEXT,
+    segment TEXT,
+    city TEXT,
+    "state" TEXT,
+    country TEXT,
+    region TEXT,
+    sales NUMERIC(10, 2)
+);

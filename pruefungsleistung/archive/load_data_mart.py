@@ -7,7 +7,7 @@ import datetime
 from sqlalchemy import create_engine, text
 import psycopg2
 
-from scripts.lib_py.calculate_clv import clv_berechnen
+from pruefungsleistung.archive.calculate_clv import clv_berechnen
 
 engine = create_engine("postgresql://EricRutz12:4hFd98Tm!120101@127.0.0.1:5432/sales_order_item")
 
@@ -59,7 +59,7 @@ def load_data_mart(file):
         df_element.to_sql(name_element,
             con=engine,
             schema="mart",
-            if_exists="append",
+            if_exists="replace",
             index=False
             
             )
