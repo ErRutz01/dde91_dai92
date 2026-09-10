@@ -59,6 +59,10 @@ def load_data_to_staging(file) :
               index=False
               
      )
+    
+    df.to_csv("data/cleaned_sales_order_item.csv", index=False)
+
+
 if __name__ == "__main__":
     file_path = os.path.join("raw_data/sales_order_item.csv")
     load_data_to_staging(file_path)
